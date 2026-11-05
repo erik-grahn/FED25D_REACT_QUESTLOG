@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { API_URL } from "../config";
-import type { Game } from "../types/types";
+import type { Game } from "../types/Game";
 
 export const useGames = (status: string) => {
   const [games, setGames] = useState<Game[]>([]);
