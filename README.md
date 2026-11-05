@@ -1,78 +1,97 @@
-# React + TypeScript + Vite
+# Inlämning 2 – Questlog
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Översikt
 
-Currently, two official plugins are available:
+Du bygger en React-app som skapar, läser, ändrar och tar bort data i ett externt API.
+Appen kan passa bra i portfoliot.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Uppgiften: Questlog
 
-## React Compiler
+Questlog är din egen spelbacklog: spelen du vill spela, spelar just nu och har klarat.
+Lista alla spel, och filtrera på status: Vill spela, Spelar, Klarat, Lagt ner
+Öppna ett spel och se omslag, plattform, betyg och anteckningar
+Lägg till ett spel, ändra det (till exempel status eller betyg) och ta bort det
+Design och extra funktioner väljer du själv.
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+## API
 
-Note: This will impact Vite dev & build performances.
-You can also try [the experimental native React Compiler support in plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md#rust-react-compiler) by using `compiler: true` in the plugin options instead of using the Babel plugin.
+Questlog API har ingen inloggning. I stället väljer du ett eget handle, till exempel anna-k ,
+och dina spel sparas under det. Då blandas de inte med någon annans. Varje spel tillhör
+ditt handle, och statusen gäller bara din post, inte någon annans.
+Dokumentation: questlog-api.vercel.app/docs. Läs den först, och prova anropen direkt
+där.
 
-## Expanding the ESLint configuration
+### Bas-URL
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+https://questlog-api.vercel.app/api/:handle,
+https://questlog-api.vercel.app/api/anna-k/games .
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+Anropen, efter bas-URL:en:
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+| Metod  | URL                     | Beskrivning                                  |
+| ------ | ----------------------- | -------------------------------------------- |
+| GET    | `/games?status=playing` | Alla spel, eller en status                   |
+| GET    | `/games/:id`            | Ett spel, eller 404                          |
+| POST   | `/games`                | Nytt spel: `{ title, platform, status }`     |
+| PATCH  | `/games/:id`            | Ändra det som skickas, t.ex. `{ rating: 5 }` |
+| DELETE | `/games/:id`            | Ta bort spelet                               |
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## Bedömning Individuell inlämningsuppgift 2 (IG/G/VG)
 
-```
+Läranderesultat 5 och 6
+Deadline Söndagen den 15/11
 
-You can also install [eslint-plugin-react-x](https://npmx.dev/package/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://npmx.dev/package/eslint-plugin-react-dom) for React-specific lint rules:
+### G
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+CRUD, komponenter, routing, laddning och fel
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### VG
 
-```
+Som G, plus custom hooks och ett sparat filter
+(useLocalStorage)
+
+## Inlämning 2 – Questlog
+
+Ett spel ser ut så här:
+{
+"id": "6b1f2a",
+"title": "Hollow Knight",
+"platform": "Switch",
+"status": "playing",
+"rating": 5,
+"coverUrl": "https://...",
+"notes": "Fastnat på Mantis Lords"
+}
+
+## Krav för G
+
+- Metod URL Gör:
+  GET /games?status=playing Alla spel, eller en status
+  GET /games/:id Ett spel, eller 404
+  POST /games Nytt spel: { title, platform, status }
+  PATCH /games/:id Ändra det som skickas, t.ex. { rating: 5 }
+  DELETE /games/:id Ta bort spelet
+- Sidor: en lista med alla spel, en sida per spel ( /games/:id ), ett formulär för nytt spel och en 404-sida
+- Routing: React Router med en layout och navigering
+- Filter: knappar för status (All, Want to play, Playing, Completed, Dropped) som visar
+  bara de spelen
+- CRUD: hämta, skapa, ändra och ta bort spel
+- Komponenter: appen är uppdelad i komponenter som får data via props
+- Laddning: medan data hämtas visas en laddningsindikator, t.ex. "Laddar spel...", i stället för en tom lista. Gäller både listan och sidan för ett spel
+- Fel: kontroll av response.ok , och ett meddelande när något går fel
+- TypeScript: en typ för ett spel
+- Appen är deployad på Vercel, med en README
+
+## Krav för VG
+
+- Alla G-krav, plus:
+- Inlämning
+- Lämna in senast i slutet av vecka 8:
+- Länk till ett publikt GitHub-repo
+- Länk till appen på Vercel
+- README med beskrivning, hur man kör appen, ditt handle och vilket betyg du siktar på
+- Custom hooks: all fetch-logik ligger i egna hooks, inte i komponenterna. T.ex. useGames(status) för listan, useGame(id) för ett spel och useSaveGame() för POST,
+  PATCH och DELETE, gärna samlade i en fil hooks/useGames.ts
+- Spara filtret: det valda statusfiltret sparas med en useLocalStorage -hook (som i
+  lektion 12), så att det finns kvar efter en omladdning
+- I README:n förklarar du kort hur dina hooks fungerar, och varför du byggt så
