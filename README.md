@@ -79,7 +79,7 @@ Ett spel ser ut så här:
 - Routing: React Router med en layout och navigering
 - Filter: knappar för status (All, Want to play, Playing, Completed, Dropped) som visar
   bara de spelen
-- CRUD: hämta, skapa, ändra och ta bort spel
+- CRUD: hämta, skapa och ta bort spel
 - Komponenter: appen är uppdelad i komponenter som får data via props
 - Laddning: medan data hämtas visas en laddningsindikator, t.ex. "Laddar spel...", i stället för en tom lista. Gäller både listan och sidan för ett spel
 - Fel: kontroll av response.ok , och ett meddelande när något går fel
@@ -102,4 +102,4 @@ Ett spel ser ut så här:
 
 ## Löpande info om utvecklingen
 
-- Jag har valt att typa varje spel med: id, title, platform, status, rating, coverUrl, notes. rating coverUrl och notes är "optional" att lägga till, då "spel jag vill spela" inte kan vara ratade, ett spel kanske saknar cover som är tillgänglig, eller att man inte har några specifika notes för tillfället.
+- Jag har valt att typa varje spel med: id, title, platform, status, rating, coverUrl, notes. Status har jag gjort till en egen type som kan innehålla värdet: "want-to-play", "playing", "completed" eller "dropped" Rating coverUrl och notes är optional att lägga till, då "spel jag vill spela" inte kan vara ratade, ett spel kanske saknar cover som är tillgänglig, eller att man inte har några specifika notes för tillfället.
