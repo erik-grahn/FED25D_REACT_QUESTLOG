@@ -99,3 +99,7 @@ Ett spel ser ut så här:
 - Spara filtret: det valda statusfiltret sparas med en useLocalStorage -hook (som i
   lektion 12), så att det finns kvar efter en omladdning
 - I README:n förklarar du kort hur dina hooks fungerar, och varför du byggt så
+
+## Löpande info om utvecklingen
+
+- Jag har valt att typa varje spel med: id, title, platform, status, rating, coverUrl, notes. rating coverUrl och notes är "optional" att lägga till, då "spel jag vill spela" inte kan vara ratade, ett spel kanske saknar cover som är tillgänglig, eller att man inte har några specifika notes för tillfället.
