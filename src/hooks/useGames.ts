@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { API_URL } from "../api/config";
+import { API_URL } from "../config";
 import type { Game } from "../types/types";
 
 export const useGames = (status: string) => {
