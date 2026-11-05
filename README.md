@@ -36,6 +36,10 @@ Anropen, efter bas-URL:en:
 | PATCH  | `/games/:id`            | Ändra det som skickas, t.ex. `{ rating: 5 }` |
 | DELETE | `/games/:id`            | Ta bort spelet                               |
 
+### API Check in Insomnia
+
+![](public/API-Check.png)
+
 ## Bedömning Individuell inlämningsuppgift 2 (IG/G/VG)
 
 Läranderesultat 5 och 6
