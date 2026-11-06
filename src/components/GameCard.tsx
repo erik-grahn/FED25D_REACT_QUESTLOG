@@ -13,8 +13,6 @@ const GameCard = () => {
 
   return (
     <div className="m-4">
-      <h1 className="text-4xl">Spel</h1>
-      <p className="my-4">antal spel: {games.length}</p>
       {games.map((game) => (
         <div
           key={game.id}
@@ -34,7 +32,7 @@ const GameCard = () => {
             <div className="flex items-center gap-1.5 rounded-lg bg-zinc-800/80 px-3 py-2">
               <span className="text-amber-400">★</span>
               <span className="text-sm font-semibold text-white">
-                {game.rating ?? "—"}
+                {game.rating ?? "n/a"}
               </span>
             </div>
           </div>
