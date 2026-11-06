@@ -12,7 +12,7 @@ const GameCard = () => {
   }
 
   return (
-    <div className="m-4">
+    <article className="m-4">
       {games.map((game) => (
         <div
           key={game.id}
@@ -38,7 +38,7 @@ const GameCard = () => {
           </div>
         </div>
       ))}
-    </div>
+    </article>
   );
 };
 
