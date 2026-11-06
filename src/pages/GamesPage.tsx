@@ -1,10 +1,9 @@
-import GameCard from "../components/GameCard";
+import Games from "../components/Games";
 
 const AllGamesPage = () => {
   return (
     <section>
-      <h1>Spel</h1>
-      <GameCard />
+      <Games />
     </section>
   );
 };
