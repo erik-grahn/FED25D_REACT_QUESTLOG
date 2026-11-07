@@ -1,8 +1,10 @@
+import { useParams } from "react-router";
 import { useGame } from "../../hooks/useGame";
 import SpecificGameCard from "./SpecificGameCard";
 
 const SpecificGame = () => {
-  const { game, isLoading, error } = useGame("");
+  const { id } = useParams();
+  const { game, isLoading, error } = useGame(id ?? "");
 
   if (isLoading) {
     console.log("Specific game isLoading");
