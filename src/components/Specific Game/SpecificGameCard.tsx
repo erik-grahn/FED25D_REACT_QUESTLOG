@@ -8,7 +8,7 @@ const SpecificGameCard = ({ game }: SpecificGameCardProps) => {
   return (
     <div>
       <p>{game.title}</p>
-      <p>{game.coverUrl}</p>
+      <img src={game.coverUrl} />
       <p>{game.platform}</p>
       <p>{game.notes}</p>
       <p>{game.rating}</p>
