@@ -33,16 +33,27 @@ const Games = () => {
   return (
     <div>
       <section>
+        <button
+          className={selectedStatus === "all" ? "text-white bg-black" : ""}
+          onClick={() => setSelectedStatus("all")}>
+          All
+        </button>
         {gameStatuses.map((status) => (
-          <button key={status} onClick={() => setSelectedStatus(status)}>
-            {status}
+          <button
+            className={selectedStatus === status ? "text-white bg-black" : ""}
+            key={status}
+            onClick={() => setSelectedStatus(status)}>
+            {status
+              .split("-")
+              .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+              .join(" ")}
           </button>
         ))}
       </section>
       <section>
-        {filteredGames.map((game) => (
-          <GameCard key={game.id} game={game} />
-        ))}
+        {filteredGames.length === 0 ?
+          <p>Denna kategori är tom 😩</p>
+        : filteredGames.map((game) => <GameCard key={game.id} game={game} />)}
       </section>
     </div>
   );
