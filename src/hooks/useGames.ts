@@ -20,7 +20,7 @@ export const useGames = (status: string) => {
         const response = await fetch(url);
 
         if (!response.ok) {
-          throw new Error("Could not fetch games from api");
+          throw new Error("Could not fetch games from database");
         }
 
         const data: Game[] = await response.json();
@@ -28,6 +28,7 @@ export const useGames = (status: string) => {
         setGames(data);
       } catch (error) {
         console.log(error);
+        setError("Could not fetch game from database");
       } finally {
         setIsLoading(false);
       }
