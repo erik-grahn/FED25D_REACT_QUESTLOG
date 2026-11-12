@@ -7,7 +7,7 @@ const Games = () => {
   const { games, error, isLoading } = useGames("all");
 
   const gameStatuses: GameStatus[] = [
-    "want-to-play",
+    "want",
     "playing",
     "completed",
     "dropped",
