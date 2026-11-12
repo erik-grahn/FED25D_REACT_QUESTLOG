@@ -20,9 +20,6 @@ export const useSaveGame = () => {
         body: JSON.stringify(game),
       });
 
-      console.log("Game sent:", game);
-      console.log("Response status:", response.status);
-
       if (!response.ok) {
         throw new Error("Could not save game to database");
       }
@@ -32,7 +29,7 @@ export const useSaveGame = () => {
       return data;
     } catch (error) {
       console.log(error);
-      setError("could not save game to database");
+      setError("Could not save game to database");
       throw error;
     } finally {
       setIsSaving(false);
