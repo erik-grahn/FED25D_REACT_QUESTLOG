@@ -8,6 +8,7 @@ import EditGamePage from "./pages/EditGamePage";
 
 export const router = createBrowserRouter([
   { path: "/", element: <Navigate to="/games" replace /> },
+  { path: "*", element: <NotFoundPage /> },
   {
     path: "/games",
     element: <RootLayout />,
