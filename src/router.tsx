@@ -1,4 +1,4 @@
-import { createBrowserRouter } from "react-router";
+import { createBrowserRouter, Navigate } from "react-router";
 import SpecificGamePage from "./pages/SpecificGamePage";
 import NotFoundPage from "./pages/NotFoundPage";
 import NewGamePage from "./pages/NewGamePage";
@@ -7,6 +7,7 @@ import AllGamesPage from "./pages/GamesPage";
 import EditGamePage from "./pages/EditGamePage";
 
 export const router = createBrowserRouter([
+  { path: "/", element: <Navigate to="/games" replace /> },
   {
     path: "/games",
     element: <RootLayout />,
