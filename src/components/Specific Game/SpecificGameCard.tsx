@@ -1,4 +1,5 @@
 import type { Game } from "../../types/Game";
+import { Link } from "react-router-dom";
 
 type SpecificGameCardProps = {
   game: Game;
@@ -19,6 +20,8 @@ const SpecificGameCard = ({ game }: SpecificGameCardProps) => {
       <p>{game.notes ? game.notes : "No notes added to this game yet"}</p>
       <p>{game.rating ? game.rating : "Game has not been rated yet"}</p>
       <p>{game.status}</p>
+
+      <Link to={`/games/${game.id}/edit`}>Edit Game</Link>
     </div>
   );
 };
