@@ -1,15 +1,8 @@
 import { useState, type SubmitEvent } from "react";
-import type { GameStatus } from "../../types/Game";
+import type { GameStatus, NewGame } from "../../types/Game";
 
 type GameFormProps = {
-  onSave: (
-    title: string,
-    platform: string,
-    status: GameStatus,
-    notes?: string,
-    rating?: number,
-    coverUrl?: string,
-  ) => Promise<void>;
+  onSave: (game: NewGame) => Promise<void>;
   error: string | null;
   isSaving: boolean;
   initialTitle?: string;
@@ -51,14 +44,14 @@ const GameForm = ({
     }
 
     try {
-      await onSave(
-        title.trim(),
-        platform.trim(),
+      await onSave({
+        title: title.trim(),
+        platform: platform.trim(),
         status,
-        notes.trim() || undefined,
+        notes: notes.trim() || undefined,
         rating,
-        coverUrl.trim() || undefined,
-      );
+        coverUrl: coverUrl.trim() || undefined,
+      });
     } catch (error) {
       console.error(error);
     }

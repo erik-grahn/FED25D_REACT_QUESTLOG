@@ -1,23 +1,14 @@
 import { useNavigate } from "react-router-dom";
 import { useSaveGame } from "../../hooks/useSaveGame";
-import type { GameStatus } from "../../types/Game";
+import type { NewGame } from "../../types/Game";
 import CreateNewGameForm from "./GameForm";
 
 const CreateNewGame = () => {
   const navigate = useNavigate();
   const { error, isSaving, createGame } = useSaveGame();
 
-  const handleSave = async (
-    title: string,
-    platform: string,
-    status: GameStatus,
-  ) => {
-    await createGame({
-      title,
-      platform,
-      status,
-    });
-
+  const handleSave = async (newGame: NewGame) => {
+    await createGame(newGame);
     navigate("/games");
   };
 
