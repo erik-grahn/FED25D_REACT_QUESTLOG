@@ -4,6 +4,7 @@ import NotFoundPage from "./pages/NotFoundPage";
 import NewGamePage from "./pages/NewGamePage";
 import RootLayout from "./components/RootLayout";
 import AllGamesPage from "./pages/GamesPage";
+import EditGamePage from "./pages/EditGamePage";
 
 export const router = createBrowserRouter([
   {
@@ -13,6 +14,7 @@ export const router = createBrowserRouter([
       { index: true, element: <AllGamesPage /> },
       { path: ":id", element: <SpecificGamePage /> },
       { path: "new", element: <NewGamePage /> },
+      { path: ":id/edit", element: <EditGamePage /> },
       { path: "*", element: <NotFoundPage /> },
     ],
   },
