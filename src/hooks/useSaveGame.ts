@@ -36,5 +36,34 @@ export const useSaveGame = () => {
     }
   };
 
-  return { error, isSaving, createGame };
+  const updateGame = async (id: string, game: NewGame) => {
+    setIsSaving(true);
+    setError(null);
+
+    try {
+      const response = await fetch(`${API_URL}/games/${id}`, {
+        method: "PATCH",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(game),
+      });
+
+      if (!response.ok) {
+        throw new Error(`Couldn't update game in database`);
+      }
+
+      const data = await response.json();
+
+      return data;
+    } catch (error) {
+      console.log(error);
+      throw error;
+    } finally {
+      setIsSaving(false);
+    }
+  };
+
+  return { error, isSaving, createGame, updateGame };
 };
