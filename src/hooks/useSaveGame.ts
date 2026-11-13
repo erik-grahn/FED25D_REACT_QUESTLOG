@@ -1,8 +1,6 @@
 import { useState } from "react";
-import type { Game, GameStatus } from "../types/Game";
+import type { NewGame, Game } from "../types/Game";
 import { API_URL } from "../config";
-
-type NewGame = { title: string; platform: string; status: GameStatus };
 
 export const useSaveGame = () => {
   const [error, setError] = useState<string | null>(null);
@@ -10,6 +8,7 @@ export const useSaveGame = () => {
 
   const createGame = async (game: NewGame) => {
     setIsSaving(true);
+    setError(null);
     try {
       const response = await fetch(`${API_URL}/games`, {
         method: "POST",
@@ -59,6 +58,7 @@ export const useSaveGame = () => {
       return data;
     } catch (error) {
       console.log(error);
+      setError("Could not update game in database");
       throw error;
     } finally {
       setIsSaving(false);
