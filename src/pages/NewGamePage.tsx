@@ -1,4 +1,4 @@
-import CreateNewGame from "../components/Create Game/CreateNewGame";
+import CreateNewGame from "../components/CreateGame/CreateNewGame";
 
 const NewGamePage = () => {
   return (
