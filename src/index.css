@@ -1,24 +1,23 @@
 @import "tailwindcss";
 
+@theme {
+  --color-game-bg: #00251f;
+  --color-game-input: #103d36;
+  --color-game-text: #a5e5d4;
+  --color-game-border: #356158;
+  --color-game-accent: #f34362;
+}
+
+
+
 body {
-  font-family: "Roboto", sans-serif;
+  color: var(--color-game-text);
+  background-color: var(--color-game-bg);
+  font-family: mono, sans-serif;
   margin: 2rem;
   font-weight: 700;
 }
 
 button {
-  font-size: 1.5rem;
-  margin-inline: 12px;
-  padding: 20px;
-  border: black solid 10px;
-  cursor: pointer;
-}
-
-button:hover {
-  background-color:  darkgray;
-  color: white;
-}
-
-button:active {
-  background-color: gray;
+  @apply text-xl w-42 p-4 border-4 border-game-border rounded-sm hover:bg-game-input active:bg-game-border active:text-game-bg;
 }
