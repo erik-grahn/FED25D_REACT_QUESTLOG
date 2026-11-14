@@ -65,7 +65,7 @@ const GameForm = ({
       <form
         onSubmit={handleSubmit}
         className="mx-auto max-w-xl border border-game-border p-6 flex flex-col gap-5 font-mono">
-        <label className="flex flex-col sm:flex-row">
+        <label className="flex items-center items-center flex-col sm:flex-row">
           <span className="pr-4">Title:</span>
           <input
             className="bg-game-input px-4 py-2 rounded-sm"
@@ -75,7 +75,7 @@ const GameForm = ({
           />
         </label>
 
-        <label className="flex flex-col sm:flex-row">
+        <label className="flex items-center flex-col sm:flex-row">
           <span className="pr-4">Platform:</span>
           <input
             className="bg-game-input px-4 py-2 rounded-sm"
@@ -85,7 +85,7 @@ const GameForm = ({
           />
         </label>
 
-        <label className="flex flex-col sm:flex-row">
+        <label className="flex items-center flex-col sm:flex-row">
           <span className="pr-4">Status:</span>
           <select
             className="bg-game-input pl-4 py-2 rounded-sm pr-6"
@@ -97,7 +97,7 @@ const GameForm = ({
             <option value="dropped">Dropped</option>
           </select>
         </label>
-        <label className="flex flex-col sm:flex-row">
+        <label className="flex items-center flex-col sm:flex-row">
           <span className="pr-4 align-top">Notes:</span>
           <textarea
             className="bg-game-input px-4 py-2 rounded-sm"
@@ -105,7 +105,7 @@ const GameForm = ({
             onChange={(event) => setNotes(event.target.value)}
           />
         </label>
-        <label className="flex flex-col sm:flex-row">
+        <label className="flex items-center flex-col sm:flex-row">
           <span className="pr-4">Rating:</span>
           <select
             className="bg-game-input pl-4 py-2 rounded-sm"
@@ -121,7 +121,7 @@ const GameForm = ({
             <option value="5">5</option>
           </select>
         </label>
-        <label className="flex flex-col sm:flex-row">
+        <label className="flex items-center flex-col sm:flex-row">
           <span className="pr-4">CoverUrl:</span>
           <input
             className="bg-game-input pl-4 py-2 rounded-sm"
@@ -130,7 +130,14 @@ const GameForm = ({
             onChange={(event) => setCoverUrl(event.target.value)}
           />
         </label>
-
+        <div className="flex items-center flex-col sm:flex-row">
+          <span className="pr-4">Cover preview:</span>
+          <img
+            src={coverUrl}
+            alt={`cover-preview of ${title}`}
+            className={!coverUrl ? "hidden" : "w-32 h-auto"}
+          />
+        </div>
         <button className="self-end" type="submit" disabled={isSaving}>
           {isSaving ? "saving..." : `${submitLabel}`}
         </button>
