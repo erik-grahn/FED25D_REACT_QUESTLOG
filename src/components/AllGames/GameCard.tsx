@@ -1,5 +1,5 @@
 import { Link } from "react-router";
-import type { Game } from "../types/Game";
+import type { Game } from "../../types/Game";
 
 type GameCardProps = {
   game: Game;

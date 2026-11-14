@@ -1,4 +1,4 @@
-import EditSpecificGame from "../components/Specific Game/EditSpecificGame";
+import EditSpecificGame from "../components/SpecificGame/EditSpecificGame";
 
 const EditGamePage = () => {
   return (

@@ -21,7 +21,11 @@ const SpecificGameCard = ({ game }: SpecificGameCardProps) => {
       <p>{game.rating ? game.rating : "Game has not been rated yet"}</p>
       <p>{game.status}</p>
 
-      <Link to={`/games/${game.id}/edit`}>Edit Game</Link>
+      <Link to={`/games/${game.id}/edit`}>
+        <p className="text-xl text-center w-42 p-4 border-4 border-black rounded-sm hover:bg-gray-300 active:bg-gray-700 active:text-white">
+          Edit Game
+        </p>
+      </Link>
     </div>
   );
 };

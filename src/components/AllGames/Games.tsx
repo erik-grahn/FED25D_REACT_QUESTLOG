@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { useGames } from "../hooks/useGames";
+import { useGames } from "../../hooks/useGames";
 import GameCard from "./GameCard";
-import type { GameStatus } from "../types/Game";
+import type { GameStatus } from "../../types/Game";
 
 const Games = () => {
   const { games, error, isLoading } = useGames("all");
@@ -38,13 +38,17 @@ const Games = () => {
     <div>
       <section className="py-4">
         <button
-          className={selectedStatus === "all" ? "text-white bg-black" : ""}
+          className={
+            selectedStatus === "all" ? "mx-4 text-white bg-black" : "mx-4"
+          }
           onClick={() => toggleFilter("all")}>
           All
         </button>
         {gameStatuses.map((status) => (
           <button
-            className={selectedStatus === status ? "text-white bg-black" : ""}
+            className={
+              selectedStatus === status ? "mx-4 text-white bg-black" : "mx-4"
+            }
             key={status}
             onClick={() => toggleFilter(status)}>
             {status

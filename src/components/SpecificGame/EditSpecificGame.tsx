@@ -1,6 +1,6 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { useGame } from "../../hooks/useGame";
-import GameForm from "../Create Game/GameForm";
+import GameForm from "../GameForm";
 import { useSaveGame } from "../../hooks/useSaveGame";
 import type { NewGame } from "../../types/Game";
 
@@ -34,7 +34,7 @@ const EditSpecificGame = () => {
       initialNotes={game.notes}
       initialRating={game.rating}
       initialCoverUrl={game.coverUrl}
-      submitLabel="Save Changes"
+      submitLabel="Save"
       onSave={handleUpdate}
       error={saveError}
       isSaving={isSaving}></GameForm>
