@@ -36,5 +36,5 @@ export const useGames = (status: string) => {
     fetchGames();
   }, [status]);
 
-  return { games, isLoading, error };
+  return { games, setGames, isLoading, error };
 };
