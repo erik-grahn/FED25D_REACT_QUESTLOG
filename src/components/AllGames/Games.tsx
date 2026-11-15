@@ -2,9 +2,25 @@ import { useState } from "react";
 import { useGames } from "../../hooks/useGames";
 import GameCard from "./GameCard";
 import type { GameStatus } from "../../types/Game";
+import { useSaveGame } from "../../hooks/useSaveGame";
 
 const Games = () => {
-  const { games, error, isLoading } = useGames("all");
+  const { games, setGames, error, isLoading } = useGames("all");
+  const { deleteGame } = useSaveGame();
+
+  const handleDelete = async (id: string) => {
+    const confirmed = window.confirm("Are you sure you want to delet game?");
+
+    if (!confirmed) return;
+
+    try {
+      await deleteGame(id);
+
+      setGames((prevGames) => prevGames.filter((game) => game.id !== id));
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const gameStatuses: GameStatus[] = [
     "want",
@@ -36,7 +52,7 @@ const Games = () => {
 
   return (
     <div>
-      <section className="">
+      <section className="mb-4">
         <button
           className={
             selectedStatus === "all" ?
@@ -67,10 +83,13 @@ const Games = () => {
           <span className="typing">Laddar spel...</span>
         </p>
       )}
-      <section className="mx-auto grid w-full max-w-7xl grid-cols-1 gap-4 px-4 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
+      <section className="flex flex-wrap w-full max-w-7xl grid-cols-1 gap-4 lg:grid-cols-2 4xl:grid-cols-4">
         {filteredGames.length === 0 ?
           <p>Denna kategori är tom 😩</p>
-        : filteredGames.map((game) => <GameCard key={game.id} game={game} />)}
+        : filteredGames.map((game) => (
+            <GameCard key={game.id} game={game} onDelete={handleDelete} />
+          ))
+        }
       </section>
     </div>
   );
