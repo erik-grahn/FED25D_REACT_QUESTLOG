@@ -65,5 +65,26 @@ export const useSaveGame = () => {
     }
   };
 
-  return { error, isSaving, createGame, updateGame };
+  const deleteGame = async (id: string) => {
+    setIsSaving(true);
+    setError(null);
+
+    try {
+      const response = await fetch(`${API_URL}/games/${id}`, {
+        method: "DELETE",
+      });
+
+      if (!response.ok) {
+        throw new Error("Could not delete game from database");
+      }
+    } catch (error) {
+      console.log(error);
+      setError("Could not delete game from database");
+      throw error;
+    } finally {
+      setIsSaving(false);
+    }
+  };
+
+  return { error, isSaving, createGame, updateGame, deleteGame };
 };
