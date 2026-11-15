@@ -10,11 +10,4 @@ export type Game = {
   notes?: string;
 };
 
-export type NewGame = {
-  title: string;
-  platform: string;
-  status: GameStatus;
-  rating?: number;
-  coverUrl?: string;
-  notes?: string;
-};
+export type NewGame = Omit<Game, "id">;
