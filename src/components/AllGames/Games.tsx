@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { useGames } from "../../hooks/useGames";
 import GameCard from "./GameCard";
 import type { GameStatus } from "../../types/Game";
