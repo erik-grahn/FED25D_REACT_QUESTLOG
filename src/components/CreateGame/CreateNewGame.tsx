@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useSaveGame } from "../../hooks/useSaveGame";
 import type { NewGame } from "../../types/Game";
-import CreateNewGameForm from "../GameForm";
+import GameForm from "../GameForm";
 
 const CreateNewGame = () => {
   const navigate = useNavigate();
@@ -12,9 +12,7 @@ const CreateNewGame = () => {
     navigate("/games");
   };
 
-  return (
-    <CreateNewGameForm onSave={handleSave} error={error} isSaving={isSaving} />
-  );
+  return <GameForm onSave={handleSave} error={error} isSaving={isSaving} />;
 };
 
 export default CreateNewGame;

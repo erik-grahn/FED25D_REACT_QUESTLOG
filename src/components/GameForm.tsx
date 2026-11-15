@@ -68,7 +68,7 @@ const GameForm = ({
         <label className="flex items-center items-center flex-col sm:flex-row">
           <span className="pr-4">Title:</span>
           <input
-            className="bg-game-input px-4 py-2 rounded-sm"
+            className="bg-game-input w-full px-4 py-2 rounded-sm"
             type="text"
             value={title}
             onChange={(event) => setTitle(event.target.value)}
@@ -78,7 +78,7 @@ const GameForm = ({
         <label className="flex items-center flex-col sm:flex-row">
           <span className="pr-4">Platform:</span>
           <input
-            className="bg-game-input px-4 py-2 rounded-sm"
+            className="bg-game-input w-full px-4 py-2 rounded-sm"
             type="text"
             value={platform}
             onChange={(event) => setPlatform(event.target.value)}
@@ -88,7 +88,7 @@ const GameForm = ({
         <label className="flex items-center flex-col sm:flex-row">
           <span className="pr-4">Status:</span>
           <select
-            className="bg-game-input pl-4 py-2 rounded-sm pr-6"
+            className="bg-game-input w-full pl-4 py-2 rounded-sm pr-6"
             value={status}
             onChange={(event) => setStatus(event.target.value as GameStatus)}>
             <option value="want">Want to play</option>
@@ -100,7 +100,7 @@ const GameForm = ({
         <label className="flex items-center flex-col sm:flex-row">
           <span className="pr-4 align-top">Notes:</span>
           <textarea
-            className="bg-game-input px-4 py-2 rounded-sm"
+            className="bg-game-input w-full px-4 py-2 rounded-sm"
             value={notes}
             onChange={(event) => setNotes(event.target.value)}
           />
@@ -108,7 +108,7 @@ const GameForm = ({
         <label className="flex items-center flex-col sm:flex-row">
           <span className="pr-4">Rating:</span>
           <select
-            className="bg-game-input pl-4 py-2 rounded-sm"
+            className="bg-game-input w-full pl-4 py-2 rounded-sm"
             value={rating ?? ""}
             onChange={(event) => setRating(Number(event.target.value))}>
             <option value="" disabled>
@@ -124,21 +124,31 @@ const GameForm = ({
         <label className="flex items-center flex-col sm:flex-row">
           <span className="pr-4">CoverUrl:</span>
           <input
-            className="bg-game-input pl-4 py-2 rounded-sm"
+            className="bg-game-input w-full pl-4 py-2 rounded-sm"
             type="text"
             value={coverUrl}
             onChange={(event) => setCoverUrl(event.target.value)}
           />
         </label>
         <div className="flex items-center flex-col sm:flex-row">
-          <span className="pr-4">Cover preview:</span>
+          {coverUrl && <span className="pr-4">Cover preview:</span>}
           <img
-            src={coverUrl}
+            src={
+              coverUrl ||
+              "https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg"
+            }
+            onError={(event) => {
+              event.currentTarget.src =
+                "https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg";
+            }}
             alt={`cover-preview of ${title}`}
             className={!coverUrl ? "hidden" : "w-32 h-auto"}
           />
         </div>
-        <button className="self-end" type="submit" disabled={isSaving}>
+        <button
+          className="self-center !w-full"
+          type="submit"
+          disabled={isSaving}>
           {isSaving ? "saving..." : `${submitLabel}`}
         </button>
       </form>

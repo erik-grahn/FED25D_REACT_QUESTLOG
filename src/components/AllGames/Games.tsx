@@ -26,9 +26,9 @@ const Games = () => {
       games.filter((game) => game.status === selectedStatus)
     );
 
-  if (isLoading) {
-    return <p>Laddar spel...</p>;
-  }
+  // if (isLoading) {
+  //   return <p>Laddar spel...</p>;
+  // }
 
   if (error) {
     return <p>Kunde inte hämta spel 😭</p>;
@@ -36,10 +36,12 @@ const Games = () => {
 
   return (
     <div>
-      <section className="py-4">
+      <section className="">
         <button
           className={
-            selectedStatus === "all" ? "mx-4 text-white bg-black" : "mx-4"
+            selectedStatus === "all" ?
+              "text-white bg-game-accent hover:!bg-game-accent2"
+            : ""
           }
           onClick={() => toggleFilter("all")}>
           All
@@ -47,7 +49,9 @@ const Games = () => {
         {gameStatuses.map((status) => (
           <button
             className={
-              selectedStatus === status ? "mx-4 text-white bg-black" : "mx-4"
+              selectedStatus === status ?
+                "text-white bg-game-accent hover:!bg-game-accent2"
+              : ""
             }
             key={status}
             onClick={() => toggleFilter(status)}>
@@ -58,6 +62,11 @@ const Games = () => {
           </button>
         ))}
       </section>
+      {isLoading && (
+        <p>
+          <span className="typing">Laddar spel...</span>
+        </p>
+      )}
       <section className="mx-auto grid w-full max-w-7xl grid-cols-1 gap-4 px-4 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
         {filteredGames.length === 0 ?
           <p>Denna kategori är tom 😩</p>
