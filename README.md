@@ -102,4 +102,5 @@ Ett spel ser ut så här:
 
 ## Löpande info om utvecklingen
 
-- Jag har valt att typa varje spel med: id, title, platform, status, rating, coverUrl, notes. Status har jag gjort till en egen type som kan innehålla värdet: "want", "playing", "completed" eller "dropped" Rating coverUrl och notes är optional att lägga till, då "spel jag vill spela" inte kan vara ratade, ett spel kanske saknar cover som är tillgänglig, eller att man inte har några specifika notes för tillfället.
+- Jag har valt att typa varje spel med: id, title, platform, status, rating, coverUrl, notes. Status har jag gjort till en egen type som kan innehålla värdet: "want", "playing", "completed" eller "dropped".
+  Jag har även gjort en till typ som heter NewGame, för att lättare kunna använda denna vid tilläggandet av spel. då struntar jag i id, då det inte behövs

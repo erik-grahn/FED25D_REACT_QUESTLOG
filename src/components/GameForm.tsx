@@ -149,7 +149,7 @@ const GameForm = ({
           className="self-center !w-full"
           type="submit"
           disabled={isSaving}>
-          {isSaving ? "saving..." : `${submitLabel}`}
+          {isSaving ? "Saving..." : `${submitLabel}`}
         </button>
       </form>
     </div>
