@@ -1,106 +1,244 @@
-# Inlämning 2 – Questlog
+# 🎮 GameQuest - Your personal game-manager!
 
-## Översikt
+GameQuest is a game backlog application built with React, TypeScript, and Tailwind CSS. It lets users manage their game collection, track progress, and keep a record of the status on the games they're playing.
 
-Du bygger en React-app som skapar, läser, ändrar och tar bort data i ett externt API.
-Appen kan passa bra i portfoliot.
+The application communicates with the external GameQuest API to store and manage game data.
 
-## Uppgiften: Questlog
+## 🔗 Links
 
-Questlog är din egen spelbacklog: spelen du vill spela, spelar just nu och har klarat.
-Lista alla spel, och filtrera på status: Vill spela, Spelar, Klarat, Lagt ner
-Öppna ett spel och se omslag, plattform, betyg och anteckningar
-Lägg till ett spel, ändra det (till exempel status eller betyg) och ta bort det
-Design och extra funktioner väljer du själv.
+- **Live application:** [GameQuest on Vercel](https://fed-25-d-react-questlog.vercel.app/games)
+- **GitHub repository:** [GameQuest on GitHub](https://github.com/erik-grahn/FED25D_REACT_QUESTLOG)
+- **API documentation:** https://questlog-api.vercel.app/docs
 
-## API
+## 🍿 Features
 
-Questlog API har ingen inloggning. I stället väljer du ett eget handle, till exempel anna-k ,
-och dina spel sparas under det. Då blandas de inte med någon annans. Varje spel tillhör
-ditt handle, och statusen gäller bara din post, inte någon annans.
-Dokumentation: questlog-api.vercel.app/docs. Läs den först, och prova anropen direkt
-där.
+- View all games in a personal game collection.
+- Filter games by status: All, Want to Play, Playing, Completed, and Dropped. Filter is "remembered" by the browser by utilizing localStorage.
+- View detailed information about individual games, including cover art, platform, rating, and notes.
+- Add new games to the collection.
+- Edit existing games, including status and rating.
+- Delete games from the collection.
+- Loading indicators while fetching data.
+- Error handling for failed API requests.
+- Navigation between pages using React Router.
+- Responsive interface styled with Tailwind CSS.
 
-### Bas-URL
+## 👨🏼‍🎨 Design
 
-https://questlog-api.vercel.app/api/:handle,
-https://questlog-api.vercel.app/api/anna-k/games .
+Although design wasn't the main focus on this project, I leaned heavily on old-school computer colors and themes. Using pinterest to brainstorm themes and colors, and then Figma to create a simple "Game-Card" (see below), assisted in keeping the styling cohesive.
 
-Anropen, efter bas-URL:en:
+![](./public/Figma-GameCard-idea.png)
 
-| Metod  | URL                     | Beskrivning                                  |
-| ------ | ----------------------- | -------------------------------------------- |
-| GET    | `/games?status=playing` | Alla spel, eller en status                   |
-| GET    | `/games/:id`            | Ett spel, eller 404                          |
-| POST   | `/games`                | Nytt spel: `{ title, platform, status }`     |
-| PATCH  | `/games/:id`            | Ändra det som skickas, t.ex. `{ rating: 5 }` |
-| DELETE | `/games/:id`            | Ta bort spelet                               |
+## 💻 Tech Stack
 
-### API Check in Insomnia
+- **React** – Component-based user interface.
+- **TypeScript** – Static typing and improved code reliability.
+- **Vite** – Development server and build tool.
+- **Tailwind CSS** – Styling and responsive layouts.
+- **React Router** – Client-side routing and navigation.
+- **API** – External REST API for game data.
+- **localStorage** – Storage of the selected status filter.
 
-![](public/API-Check.png)
+## 🛫 Getting Started
 
-## Bedömning Individuell inlämningsuppgift 2 (IG/G/VG)
+### Requirements
 
-Läranderesultat 5 och 6
-Deadline Söndagen den 15/11
+Make sure you have the following installed:
 
-### G
+- Node.js
+- npm
+- Git
 
-CRUD, komponenter, routing, laddning och fel
+### Installation
 
-### VG
+**1. Clone the repository**
 
-Som G, plus custom hooks och ett sparat filter
-(useLocalStorage)
+```bash
+git clone YOUR_GITHUB_REPOSITORY_URL
+```
 
-## Inlämning 2 – Questlog
+**2. Navigate to the project directory**
 
-Ett spel ser ut så här:
+```bash
+cd YOUR_REPOSITORY_NAME
+```
+
+**3. Install dependencies**
+
+```bash
+npm install
+```
+
+**4. Configure the API**
+
+GameQuest uses an external API where each user has a unique handle to separate their game collection from others.
+
+API base URL:
+
+```text
+https://questlog-api.vercel.app/api/:handle
+```
+
+Replace `:handle` with your own handle.
+
+Example:
+
+```text
+https://questlog-api.vercel.app/api/my-handle
+```
+
+Update the API configuration in `src/config.ts` to use your chosen handle.
+
+**5. Start the development server**
+
+```bash
+npm run dev
+```
+
+Open the local URL displayed in your terminal, usually:
+
+```text
+http://localhost:5173
+```
+
+The application should now be running locally.
+
+## 🔌 API
+
+GameQuest uses the external Questlog API.
+
+**Documentation:** https://questlog-api.vercel.app/docs
+
+**My API handle:** `granka`
+
+**Base URL:**
+
+```text
+https://questlog-api.vercel.app/api/granka
+```
+
+The API does not require authentication. Each handle has its own game collection.
+
+### API Endpoints
+
+| Method | Endpoint                | Description             |
+| ------ | ----------------------- | ----------------------- |
+| GET    | `/games`                | Fetch all games         |
+| GET    | `/games?status=playing` | Fetch games by status   |
+| GET    | `/games/:id`            | Fetch a specific game   |
+| POST   | `/games`                | Create a new game       |
+| PATCH  | `/games/:id`            | Update an existing game |
+| DELETE | `/games/:id`            | Delete a game           |
+
+### Game Data
+
+A game returned by the API has the following structure:
+
+```json
 {
-"id": "6b1f2a",
-"title": "Hollow Knight",
-"platform": "Switch",
-"status": "playing",
-"rating": 5,
-"coverUrl": "https://...",
-"notes": "Fastnat på Mantis Lords"
+  "id": "6b1f2a",
+  "title": "Hollow Knight",
+  "platform": "Switch",
+  "status": "playing",
+  "rating": 5,
+  "coverUrl": "https://example.com/cover.jpg",
+  "notes": "Stuck on Mantis Lords"
 }
+```
 
-## Krav för G
+The `id` is generated by the API when a new game is created.
 
-- Metod URL Gör:
-  GET /games?status=playing Alla spel, eller en status
-  GET /games/:id Ett spel, eller 404
-  POST /games Nytt spel: { title, platform, status }
-  PATCH /games/:id Ändra det som skickas, t.ex. { rating: 5 }
-  DELETE /games/:id Ta bort spelet
-- Sidor: en lista med alla spel, en sida per spel ( /games/:id ), ett formulär för nytt spel och en 404-sida
-- Routing: React Router med en layout och navigering
-- Filter: knappar för status (All, Want to play, Playing, Completed, Dropped) som visar
-  bara de spelen
-- CRUD: hämta, skapa och ta bort spel
-- Komponenter: appen är uppdelad i komponenter som får data via props
-- Laddning: medan data hämtas visas en laddningsindikator, t.ex. "Laddar spel...", i stället för en tom lista. Gäller både listan och sidan för ett spel
-- Fel: kontroll av response.ok , och ett meddelande när något går fel
-- TypeScript: en typ för ett spel
-- Appen är deployad på Vercel, med en README
+The application uses separate TypeScript types for existing and new games:
 
-## Krav för VG
+```ts
+type NewGame = Omit<Game, "id">;
+```
 
-- Alla G-krav, plus:
-- Inlämning
-- Lämna in senast i slutet av vecka 8:
-- Länk till ett publikt GitHub-repo
-- Länk till appen på Vercel
-- README med beskrivning, hur man kör appen, ditt handle och vilket betyg du siktar på
-- Custom hooks: all fetch-logik ligger i egna hooks, inte i komponenterna. T.ex. useGames(status) för listan, useGame(id) för ett spel och useSaveGame() för POST,
-  PATCH och DELETE, gärna samlade i en fil hooks/useGames.ts
-- Spara filtret: det valda statusfiltret sparas med en useLocalStorage -hook (som i
-  lektion 12), så att det finns kvar efter en omladdning
-- I README:n förklarar du kort hur dina hooks fungerar, och varför du byggt så
+This allows new games to be created without providing an ID while ensuring existing games have one.
 
-## Löpande info om utvecklingen
+## 🪝 Custom Hooks
 
-- Jag har valt att typa varje spel med: id, title, platform, status, rating, coverUrl, notes. Status har jag gjort till en egen type som kan innehålla värdet: "want", "playing", "completed" eller "dropped".
-  Jag har även gjort en till typ som heter NewGame, för att lättare kunna använda denna vid tilläggandet av spel. då struntar jag i id, då det inte behövs
+To keep components focused on rendering and user interaction, data fetching and API operations are managed by custom React hooks. The hooks are based on the requirements of the assignment, utilizing the names and functionality provided by the instructions.
+
+### useGames(status)
+
+Responsible for fetching a list of games from the API.
+
+It manages:
+
+- The games collection.
+- Loading state.
+- Error state.
+- Fetching games when the provided status changes.
+
+The hook also provides a way to update the local games state after deleting a game.
+
+### useGame(id)
+
+Responsible for fetching a specific game using its the games id.
+
+It handles the API request, loading state and errors, allowing the game details page to focus on displaying information.
+
+### useSaveGame()
+
+Handles operations that modify game data.
+
+It provides three functions:
+
+- `createGame()` – Sends a POST request to create a game.
+- `updateGame()` – Sends a PATCH request to update a game.
+- `deleteGame()` – Sends a DELETE request to remove a game.
+
+The hook also manages saving state and API errors.
+
+### useLocalStorage()
+
+A reusable hook that synchronizes React state with the browser's localStorage.
+
+It is used to remember the selected game status filter.
+
+When a user selects a filter:
+
+1. React state updates.
+2. The new value is saved to localStorage.
+3. When the page reloads, the previously selected value is restored and implemented on the current session.
+
+## 📑 Application Pages
+
+| Page          | Description                                     |
+| ------------- | ----------------------------------------------- |
+| Games         | Displays the game collection and status filters |
+| Specific Game | Shows information about an individual game      |
+| New Game      | Form for creating a new game                    |
+| Edit Game     | Form for updating an existing game              |
+| Not Found     | 404 page for unknown routes                     |
+
+The application uses React Router with a shared layout and navigation.
+
+## 💾 Persistent Filtering
+
+The status filter supports the following values:
+
+- All
+- Want to Play
+- Playing
+- Completed
+- Dropped
+
+The selected filter is stored in localStorage using the custom `useLocalStorage` hook.
+
+This means users can refresh the page or return later without having to select their preferred filter again.
+
+## 🎓 Assignment Information
+
+**Assignment:** Inlämning 2 – Questlog (GameQuest)
+
+**Target grade:** VG (Väl Godkänt)
+
+The application is developed to fulfill the requirements for both G and VG.
+
+## 🤖 Use of AI
+
+AI (ChatGPT) was used as a learning and development tool throughout this project. I used it to better understand React, TypeScript, custom hooks, and other programming concepts, as well as to troubleshoot issues when I got stuck in my own code.
+
+ChatGPT was used for explanations, guidance, and troubleshooting. All code was written and implemented by me. Codex was not used in this project.
