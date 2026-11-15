@@ -3,11 +3,14 @@ import type { Game } from "../../types/Game";
 
 type GameCardProps = {
   game: Game;
+  onDelete: (id: string) => Promise<void>;
 };
 
-const GameCard = ({ game }: GameCardProps) => {
+const GameCard = ({ game, onDelete }: GameCardProps) => {
   return (
-    <article key={game.id} className="h-auto bg-game-card border-3 rounded-md">
+    <article
+      key={game.id}
+      className="h-auto w-92 min-w-86 bg-game-card border-3 rounded-md">
       <div className="bg-game-input h-16 flex justify-between shadow-[0_4px_0_0_rgba(0,0,0,0.5)]">
         <span className="flex items-center gap-1 ml-4">
           {game.rating ?
@@ -16,8 +19,8 @@ const GameCard = ({ game }: GameCardProps) => {
                 key={index}
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
-                height="20px"
-                width="20px"
+                height="14px"
+                width="14px"
                 fill="#f34362"
                 stroke="#f34362"
                 strokeWidth={1}>
@@ -41,6 +44,7 @@ const GameCard = ({ game }: GameCardProps) => {
 
           <button
             type="button"
+            onClick={() => void onDelete(game.id)}
             className="cursor-pointer !m-0 !box-border !flex !h-12 !w-24 !items-center !justify-center !rounded-sm !border-3 !border-game-accent !bg-game-card !p-0 !text-sm hover:!bg-game-bg active:!bg-gray-900">
             <span className="text-game-accent pt-1">Delete</span>
           </button>
