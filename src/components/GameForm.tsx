@@ -64,7 +64,7 @@ const GameForm = ({
 
       <form
         onSubmit={handleSubmit}
-        className="mx-auto max-w-xl border border-game-border p-6 flex flex-col gap-5 font-mono">
+        className="mx-auto max-w-xl border border-game-border p-6 flex flex-col gap-5">
         <label className="flex items-center items-center flex-col sm:flex-row">
           <span className="pr-4">Title:</span>
           <input

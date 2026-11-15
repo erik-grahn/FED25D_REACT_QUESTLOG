@@ -10,9 +10,9 @@ const GameCard = ({ game, onDelete }: GameCardProps) => {
   return (
     <article
       key={game.id}
-      className="h-auto w-92 min-w-86 bg-game-card border-3 rounded-md">
+      className="h-auto w-96 min-w-86 bg-game-card border-3 rounded-md font-data-mono">
       <div className="bg-game-input h-16 flex justify-between shadow-[0_4px_0_0_rgba(0,0,0,0.5)]">
-        <span className="flex items-center gap-1 ml-4">
+        <span className="flex items-center gap-1 ml-4 pr-2">
           {game.rating ?
             Array.from({ length: game.rating }).map((_, index) => (
               <svg
@@ -55,15 +55,20 @@ const GameCard = ({ game, onDelete }: GameCardProps) => {
         <div className="p-4">
           <div className="p-2">
             <span>Title: </span>
-            <span>{game.title}</span>
+            <span className="italic">{game.title}</span>
           </div>
           <div className="p-2">
             <span>Platform: </span>
-            <span>{game.platform}</span>
+            <span className="italic">{game.platform}</span>
           </div>
           <div className="p-2">
             <span>Status: </span>
-            <span>{game.status}</span>
+            <span>
+              {" "}
+              {game.status === "want" ?
+                `${game.status.charAt(0).toUpperCase() + game.status.slice(1)} to play`
+              : `${game.status.charAt(0).toUpperCase() + game.status.slice(1)}`}
+            </span>
           </div>
         </div>
       </Link>
