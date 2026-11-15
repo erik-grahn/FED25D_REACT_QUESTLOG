@@ -32,12 +32,11 @@ body {
   color: var(--color-game-text);
   background-color: var(--color-game-bg);
   font-family: 'data', sans-serif;
-  margin: 2rem;
   font-weight: 700;
 }
 
 button {
-  @apply mx-4 mb-4 text-xl w-42 p-4 border-4 border-game-border rounded-sm hover:bg-game-input active:bg-game-border active:text-game-bg;
+  @apply mx-2 mb-4 text-lg w-38 p-4 border-4 border-game-border rounded-sm hover:bg-game-input active:bg-game-border active:text-game-bg;
 }
 
 .typing {
