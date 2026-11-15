@@ -1,23 +1,67 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: 'data';
+  src: url('./assets/Pixel12x10-v1.1.0.ttf');
+}
+@font-face {
+  font-family: 'data-mono';
+  src: url('./assets/Pixel12x10Mono-v1.1.0.ttf');
+}
+
 @theme {
-  --color-game-bg: #00251f;
+  --color-game-bg: #00251F;
   --color-game-input: #103d36;
   --color-game-text: #a5e5d4;
   --color-game-border: #356158;
   --color-game-accent: #f34362;
+  --color-game-accent2: #f55d78;
+  --color-game-edit: #FF7700;
+  --color-game-card: #01322A;
+
+
+  --font-data: 'data';
+  --font-data-mono: 'data-mono';
 }
 
-
+#root {
+  margin: 2rem;
+}
 
 body {
   color: var(--color-game-text);
   background-color: var(--color-game-bg);
-  font-family: mono, sans-serif;
+  font-family: 'data', sans-serif;
   margin: 2rem;
   font-weight: 700;
 }
 
 button {
-  @apply text-xl w-42 p-4 border-4 border-game-border rounded-sm hover:bg-game-input active:bg-game-border active:text-game-bg;
+  @apply mx-4 mb-4 text-xl w-42 p-4 border-4 border-game-border rounded-sm hover:bg-game-input active:bg-game-border active:text-game-bg;
+}
+
+.typing {
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  width: 0;
+  vertical-align: bottom;
+  animation: typing 2s steps(19, end) forwards;
+}
+
+.blinking-dot {
+  opacity: 0;
+  animation: blink 1s step-end 2s infinite;
+}
+
+@keyframes typing {
+  to {
+    width: 15.8ch;
+  }
+}
+
+@keyframes blink {
+  50% {
+    opacity: 1;
+  }
 }
