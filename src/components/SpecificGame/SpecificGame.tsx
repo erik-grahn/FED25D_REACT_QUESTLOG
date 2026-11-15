@@ -8,17 +8,17 @@ const SpecificGame = () => {
 
   if (isLoading) {
     console.log("Specific game isLoading");
-    return <p>Laddar spel...</p>;
+    return <p className="typing">Loading game...</p>;
   }
 
   if (error) {
     console.log("SpecificGame error");
-    return <p>Kunde inte hämta spel från databasen 😭</p>;
+    return <p>Couldn't get game from database 😭</p>;
   }
 
   if (!game) {
     console.log("Specific Game !game");
-    return <p>Kunde inte hitta spel i databasen 😭</p>;
+    return <p>Couldn't find game in database 😭</p>;
   }
 
   return (

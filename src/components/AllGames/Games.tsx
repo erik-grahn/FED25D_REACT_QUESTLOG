@@ -79,12 +79,12 @@ const Games = () => {
       </section>
       {isLoading && (
         <p>
-          <span className="typing">Laddar spel...</span>
+          <span className="typing">Loading games...</span>
         </p>
       )}
       <section className="flex flex-wrap w-full max-w-7xl grid-cols-1 gap-4 lg:grid-cols-2 4xl:grid-cols-4">
         {filteredGames.length === 0 ?
-          <p>Denna kategori är tom 😩</p>
+          <p>Category is empty 😩</p>
         : filteredGames.map((game) => (
             <GameCard key={game.id} game={game} onDelete={handleDelete} />
           ))
