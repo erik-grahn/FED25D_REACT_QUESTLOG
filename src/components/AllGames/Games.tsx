@@ -3,6 +3,7 @@ import { useGames } from "../../hooks/useGames";
 import GameCard from "./GameCard";
 import type { GameStatus } from "../../types/Game";
 import { useSaveGame } from "../../hooks/useSaveGame";
+import useLocalStorage from "../../hooks/useLocalStorage";
 
 const Games = () => {
   const { games, setGames, error, isLoading } = useGames("all");
@@ -29,9 +30,8 @@ const Games = () => {
     "dropped",
   ];
 
-  const [selectedStatus, setSelectedStatus] = useState<GameStatus | "all">(
-    "all",
-  );
+  const { value: selectedStatus, setValue: setSelectedStatus } =
+    useLocalStorage<GameStatus | "all">("GameFilter", "all");
 
   const toggleFilter = (status: GameStatus | "all") => {
     setSelectedStatus((prev) => (prev === status ? "all" : status));
