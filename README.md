@@ -6,7 +6,7 @@ The application communicates with the external GameQuest API to store and manage
 
 ## 🔗 Links
 
-- **Live application:** [GameQuest on Vercel](https://fed-25-d-react-questlog.vercel.app/games)
+- **Live application:** [GameQuest on Vercel](https://fed-25-d-react-questlog.vercel.app/)
 - **GitHub repository:** [GameQuest on GitHub](https://github.com/erik-grahn/FED25D_REACT_QUESTLOG)
 - **API documentation:** https://questlog-api.vercel.app/docs
 
